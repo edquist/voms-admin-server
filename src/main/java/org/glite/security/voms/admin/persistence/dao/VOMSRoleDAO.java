@@ -19,6 +19,7 @@
  */
 package org.glite.security.voms.admin.persistence.dao;
 
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -440,9 +441,13 @@ public class VOMSRoleDAO {
 			throw new IllegalArgumentException(
 					"role parameter must be non-null!");
 
-		String query = "select distinct c.subjectString from VOMSUser u join u.certificates c join u.mappings m where m.group =  :group and m.role = :role";
 
-		return HibernateFactory.getSession().createQuery(query).setEntity(
-				"group", g).setEntity("role", r).list();
+		Date now = new Date();
+		String query = "select distinct c.subjectString from VOMSUser u join u.certificates c join u.mappings m where m.group =  :group and m.role = :role and u.suspended = false and u.endTime >= :now and c.suspended = false";
+
+		return HibernateFactory.getSession().createQuery(query)
+				.setEntity("group", g)
+				.setEntity("role", r)
+				.setDate("now", now).list();
 	}
 }
