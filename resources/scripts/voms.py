@@ -657,6 +657,7 @@ class InstallVOAction(ConfigureAction):
              'CA.FILES': self.user_options['ca-files'],
              'READ_ACCESS' : str(self.user_options.has_key('read-access-for-authenticated-clients')),
              'VO_AUP_URL': self.user_options['vo-aup-url'],
+             'ADMIN_SKIP_CA_CHECK' : str(self.user_options.has_key('skip-ca-check')),
              'AA.CERT' : self.user_options['aa-cert'],
              'AA.KEY' : self.user_options['aa-key'],
              'SAML.MAX_ASSERTION_LIFETIME' : self.user_options['saml-max-assertion-lifetime'],
