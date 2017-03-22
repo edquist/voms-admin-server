@@ -81,7 +81,7 @@ public class SavePersonalInformationAction extends UserActionSupport {
 	}
 
 
-	@RegexFieldValidator(type = ValidatorType.FIELD, message = "The name field contains illegal characters!", expression = "^[^<>&=;]*$")
+	@RegexFieldValidator(type = ValidatorType.FIELD, message = "The name field contains illegal characters!", regex = "^[^<>&=;]*$")
 	public String getTheName() {
 		return theName;
 	}
@@ -91,7 +91,7 @@ public class SavePersonalInformationAction extends UserActionSupport {
 		this.theName = theName;
 	}
 
-	@RegexFieldValidator(type = ValidatorType.FIELD, message = "The surname field contains illegal characters!", expression = "^[^<>&=;]*$")
+	@RegexFieldValidator(type = ValidatorType.FIELD, message = "The surname field contains illegal characters!", regex = "^[^<>&=;]*$")
 	public String getTheSurname() {
 		return theSurname;
 	}
@@ -101,7 +101,7 @@ public class SavePersonalInformationAction extends UserActionSupport {
 		this.theSurname = theSurname;
 	}
 
-	@RegexFieldValidator(type = ValidatorType.FIELD, message = "The institution field contains illegal characters!", expression = "^[^<>&=;]*$")
+	@RegexFieldValidator(type = ValidatorType.FIELD, message = "The institution field contains illegal characters!", regex = "^[^<>&=;]*$")
 	public String getTheInstitution() {
 		return theInstitution;
 	}
@@ -111,7 +111,7 @@ public class SavePersonalInformationAction extends UserActionSupport {
 		this.theInstitution = theInstitution;
 	}
 
-	@RegexFieldValidator(type = ValidatorType.FIELD, message = "The address field contains illegal characters!", expression = "^[^<>&=;]*$")
+	@RegexFieldValidator(type = ValidatorType.FIELD, message = "The address field contains illegal characters!", regex = "^[^<>&=;]*$")
 	public String getTheAddress() {
 		return theAddress;
 	}
@@ -121,7 +121,7 @@ public class SavePersonalInformationAction extends UserActionSupport {
 		this.theAddress = theAddress;
 	}
 
-	@RegexFieldValidator(type = ValidatorType.FIELD, message = "The phoneNumber field contains illegal characters!", expression = "^[^<>&=;]*$")
+	@RegexFieldValidator(type = ValidatorType.FIELD, message = "The phoneNumber field contains illegal characters!", regex = "^[^<>&=;]*$")
 	public String getThePhoneNumber() {
 		return thePhoneNumber;
 	}
@@ -134,7 +134,7 @@ public class SavePersonalInformationAction extends UserActionSupport {
 
 	@RequiredStringValidator(type = ValidatorType.FIELD, message = "Please enter an email address.")
 	@EmailValidator(type = ValidatorType.FIELD, message = "Please enter a valid email address.")
-	@RegexFieldValidator(type = ValidatorType.FIELD, message = "The email field name contains illegal characters!", expression = "^[^<>&=;]*$")
+	@RegexFieldValidator(type = ValidatorType.FIELD, message = "The email field name contains illegal characters!", regex = "^[^<>&=;]*$")
 	public String getTheEmailAddress() {
 		return theEmailAddress;
 	}

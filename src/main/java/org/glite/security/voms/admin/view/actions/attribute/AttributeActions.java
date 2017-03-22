@@ -93,7 +93,7 @@ public class AttributeActions extends BaseAction {
 	}
 
 	@RequiredStringValidator(type = ValidatorType.FIELD, message = "Attribute name is required.")
-	@RegexFieldValidator(type = ValidatorType.FIELD, message = "The attribute name field contains illegal characters!", expression = "^[^<>&=;]*$")
+	@RegexFieldValidator(type = ValidatorType.FIELD, message = "The attribute name field contains illegal characters!", regex = "^[^<>&=;]*$")
 	public String getAttributeName() {
 		return attributeName;
 	}
@@ -102,7 +102,7 @@ public class AttributeActions extends BaseAction {
 		this.attributeName = attributeName;
 	}
 
-	@RegexFieldValidator(type = ValidatorType.FIELD, message = "The attribute description field contains illegal characters!", expression = "^[^<>&=;]*$")
+	@RegexFieldValidator(type = ValidatorType.FIELD, message = "The attribute description field contains illegal characters!", regex = "^[^<>&=;]*$")
 	public String getAttributeDescription() {
 		return attributeDescription;
 	}

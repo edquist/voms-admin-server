@@ -39,7 +39,7 @@ public class SearchData {
 		// TODO Auto-generated constructor stub
 	}
 
-	@RegexFieldValidator(type = ValidatorType.FIELD, message = "the search text field contains illegal characters!", expression = "^[^<>&=;]*$")
+	@RegexFieldValidator(type = ValidatorType.FIELD, message = "the search text field contains illegal characters!", regex = "^[^<>&=;]*$")
 	public String getText() {
 		return text;
 	}

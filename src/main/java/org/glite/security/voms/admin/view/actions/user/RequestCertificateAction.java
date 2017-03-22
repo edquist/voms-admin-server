@@ -129,7 +129,7 @@ public class RequestCertificateAction extends UserActionSupport {
 		this.certificateFile = certificateFile;
 	}
 	
-	@RegexFieldValidator(type = ValidatorType.FIELD, message = "The subject field name contains illegal characters!", expression = "^[^<>&;]*$")
+	@RegexFieldValidator(type = ValidatorType.FIELD, message = "The subject field name contains illegal characters!", regex = "^[^<>&;]*$")
 	public String getSubject() {
 		return subject;
 	}
@@ -138,7 +138,7 @@ public class RequestCertificateAction extends UserActionSupport {
 		this.subject = subject;
 	}
 	
-	@RegexFieldValidator(type = ValidatorType.FIELD, message = "The subject field name contains illegal characters!", expression = "^[^<>&;]*$")
+	@RegexFieldValidator(type = ValidatorType.FIELD, message = "The subject field name contains illegal characters!", regex = "^[^<>&;]*$")
 	public String getCaSubject() {
 		return caSubject;
 	}

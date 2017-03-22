@@ -63,7 +63,7 @@ public class AttributeActions extends RoleActionSupport {
 		this.attributeName = attributeName;
 	}
 
-	@RegexFieldValidator(type = ValidatorType.FIELD, message = "This field contains illegal characters!", expression = "^[^<>&=;]*$")
+	@RegexFieldValidator(type = ValidatorType.FIELD, message = "This field contains illegal characters!", regex = "^[^<>&=;]*$")
 	public String getAttributeValue() {
 		return attributeValue;
 	}

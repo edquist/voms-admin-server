@@ -54,7 +54,7 @@ public class BulkSuspendAction extends UserBulkActionSupport {
 	String suspensionReason;
 	
 
-	@RegexFieldValidator(type=ValidatorType.FIELD, expression="^[^<>&=;]*$", message="You entered invalid characters in the suspension reason field!")
+	@RegexFieldValidator(type=ValidatorType.FIELD, regex="^[^<>&=;]*$", message="You entered invalid characters in the suspension reason field!")
 	public String getSuspensionReason() {
 		return suspensionReason;
 	}

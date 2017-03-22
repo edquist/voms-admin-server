@@ -116,7 +116,7 @@ public class CreateAction extends GroupActionSupport {
 	}
 
 	@RequiredStringValidator(type = ValidatorType.FIELD, message = "A name for the group is required!")
-	@RegexFieldValidator(type = ValidatorType.FIELD, message = "The group name field contains illegal characters!", expression = "^[^<>&=;]*$")
+	@RegexFieldValidator(type = ValidatorType.FIELD, message = "The group name field contains illegal characters!", regex = "^[^<>&=;]*$")
 	public String getGroupName() {
 		return groupName;
 	}
@@ -133,7 +133,7 @@ public class CreateAction extends GroupActionSupport {
 		this.parentGroupName = parentGroupName;
 	}
 
-	@RegexFieldValidator(type = ValidatorType.FIELD, message = "The description field contains illegal characters!", expression = "^[^<>&=;]*$")
+	@RegexFieldValidator(type = ValidatorType.FIELD, message = "The description field contains illegal characters!", regex = "^[^<>&=;]*$")
 	@StringLengthFieldValidator(type = ValidatorType.FIELD, maxLength="255", message="The description field size is limited to 255 characters.")
 	public String getDescription() {
 		return description;

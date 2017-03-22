@@ -141,7 +141,7 @@ public class SubmitRequestAction extends RegisterActionSupport {
 	}
 
 	@RequiredStringValidator(type=ValidatorType.FIELD, message = "Please enter your name.")
-	@RegexFieldValidator(type=ValidatorType.FIELD, expression="^[^<>&=;]*$", message="You entered invalid characters.")
+	@RegexFieldValidator(type=ValidatorType.FIELD, regex="^[^<>&=;]*$", message="You entered invalid characters.")
 	public String getName() {
 		return name;
 	}
@@ -151,7 +151,7 @@ public class SubmitRequestAction extends RegisterActionSupport {
 	}
 
 	@RequiredStringValidator(type = ValidatorType.FIELD, message = "Please enter your surname.")
-	@RegexFieldValidator(type=ValidatorType.FIELD, expression="^[^<>&=;]*$", message="You entered invalid characters.")
+	@RegexFieldValidator(type=ValidatorType.FIELD, regex="^[^<>&=;]*$", message="You entered invalid characters.")
 	public String getSurname() {
 		return surname;
 	}
@@ -161,7 +161,7 @@ public class SubmitRequestAction extends RegisterActionSupport {
 	}
 
 	@RequiredStringValidator(type = ValidatorType.FIELD, message = "Please enter your institution.")
-	@RegexFieldValidator(type=ValidatorType.FIELD, expression="^[^<>&=;]*$", message="You entered invalid characters.")
+	@RegexFieldValidator(type=ValidatorType.FIELD, regex="^[^<>&=;]*$", message="You entered invalid characters.")
 	public String getInstitution() {
 		return institution;
 	}
@@ -171,7 +171,7 @@ public class SubmitRequestAction extends RegisterActionSupport {
 	}
 
 	@RequiredStringValidator(type = ValidatorType.FIELD, message = "Please enter your address.")
-	@RegexFieldValidator(type=ValidatorType.FIELD, expression="^[^<>&=;]*$", message="You entered invalid characters.")
+	@RegexFieldValidator(type=ValidatorType.FIELD, regex="^[^<>&=;]*$", message="You entered invalid characters.")
 	public String getAddress() {
 		return address;
 	}
@@ -181,7 +181,7 @@ public class SubmitRequestAction extends RegisterActionSupport {
 	}
 
 	@RequiredStringValidator(type = ValidatorType.FIELD, message = "Please enter your phone number.")
-	@RegexFieldValidator(type=ValidatorType.FIELD, expression="^[^<>&=;]*$", message="You entered invalid characters.")
+	@RegexFieldValidator(type=ValidatorType.FIELD, regex="^[^<>&=;]*$", message="You entered invalid characters.")
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
@@ -191,7 +191,7 @@ public class SubmitRequestAction extends RegisterActionSupport {
 	}
 
 	@RequiredFieldValidator(type = ValidatorType.FIELD, message = "You must sign the AUP.")
-	@RegexFieldValidator(type = ValidatorType.FIELD, expression = "^true$", message = "You must accept the terms of the AUP to proceed")
+	@RegexFieldValidator(type = ValidatorType.FIELD, regex = "^true$", message = "You must accept the terms of the AUP to proceed")
 	public String getAupAccepted() {
 		return aupAccepted;
 	}
