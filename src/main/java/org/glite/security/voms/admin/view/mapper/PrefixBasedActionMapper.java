@@ -5,6 +5,7 @@ import com.opensymphony.xwork2.inject.Container;
 import com.opensymphony.xwork2.inject.Inject;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.struts2.RequestUtils;
 import org.apache.struts2.StrutsConstants;
 import org.apache.struts2.dispatcher.mapper.ActionMapper;
 import org.apache.struts2.dispatcher.mapper.ActionMapping;
@@ -75,7 +76,7 @@ public class PrefixBasedActionMapper extends DefaultActionMapper implements Acti
 
   @SuppressWarnings("unchecked")
   public ActionMapping getMapping(HttpServletRequest request, ConfigurationManager configManager) {
-    String uri = getUri(request);
+    String uri = RequestUtils.getUri(request);
     for (int lastIndex = uri.lastIndexOf('/'); lastIndex > (-1); lastIndex = uri.lastIndexOf('/', lastIndex-1)) {
       ActionMapper actionMapper = actionMappers.get(uri.substring(0,lastIndex));
       if (actionMapper != null) {
