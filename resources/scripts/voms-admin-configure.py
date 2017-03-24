@@ -101,7 +101,34 @@ def setup_identity():
             raise VomsConfigureError, "User unknown: %s" % options['config-owner']        
         
         user_id = pwd_info[2]
-    
+
+
+    voms_group = None
+    if not options.has_key("voms-group"):
+        if user_id == 0:
+            for group in ['voms']:
+                try:
+
+                    if grp.getgrnam(group):
+                        (gr_name,gr_passwd, gr_gid,gr_mem) = grp.getgrnam(group)
+                        options['voms-group-id']=gr_gid
+                        break
+
+                except KeyError, k:
+                    continue
+
+            if not options.has_key('voms-group-id'):
+                raise VomsConfigureError,"Please specify the --voms-group option. The default 'voms' are not applicable to your system."
+        else:
+            options['voms-group-id'] = os.getgid()
+    else:
+        try:
+            (gr_name,gr_passwd, gr_gid,gr_mem) =  grp.getgrnam(options['voms-group'])
+            options['voms-group-id']=gr_gid
+
+        except KeyError, k:
+            raise VomsConfigureError, "The voms-group passed as argument (%s) does not exist on this system!" % options['voms-group']
+ 
     tomcat_group = None
     
     if not options.has_key("tomcat-group"):
@@ -147,8 +174,8 @@ def setup_identity():
     options['ta.subject']=certificate.subject
     options['ta.ca']=certificate.issuer
 
- 
-    
+
+
 def check_installed_setup():
     
     vlog("Checking local installation...")

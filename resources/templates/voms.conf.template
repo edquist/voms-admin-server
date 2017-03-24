@@ -10,3 +10,5 @@
 --vo=@VONAME@
 --uri=@URI@
 --timeout=@TIMEOUT@
+--x509_user_cert=@X509_USER_CERT@
+--x509_user_key=@X509_USER_KEY@

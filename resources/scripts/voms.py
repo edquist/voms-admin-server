@@ -71,6 +71,12 @@ def load_sysconfig():
 
 voms_admin_sysconfig_props = load_sysconfig()
 
+os.environ.setdefault("VOMS_ADMIN_LOCATION_VAR", "/")
+os.environ.setdefault("VOMS_LOCATION_VAR", "/var")
+os.environ.setdefault("VOMS_LOCATION", "/usr")
+os.environ.setdefault("VOMS_ADMIN_LOCATION", "/usr/share/voms-admin")
+os.environ.setdefault("VOMS_LOCATION_CONF", "/")
+
 def exit_status(status):
     ## FIXME: No op
     return status
@@ -178,6 +184,7 @@ class VomsInvocationError(exceptions.RuntimeError):
 
 class ConfigureAction:
     def __init__(self,name,required_options,user_options):
+	
         self.name = name
         self.required_options=required_options
         self.user_options=user_options
@@ -718,7 +725,9 @@ class InstallVOAction(ConfigureAction):
              'VONAME': self.user_options['vo'],
              'PORT': self.user_options['port'],
              'URI': self.user_options['uri'],
-             'TIMEOUT': self.user_options['timeout']}
+             'TIMEOUT': self.user_options['timeout'],
+             'X509_USER_CERT':self.user_options['cert'],	
+             'X509_USER_KEY':self.user_options['key']}
         
         t = Template(open(VomsConstants.voms_template,"r").read())
         
@@ -743,6 +752,10 @@ class InstallVOAction(ConfigureAction):
      
         os.chmod(voms_config_file(self.user_options['vo']),0640)
         os.chmod(voms_pass_file(self.user_options['vo']), 0640)
+        if os.getgid() == 0:
+        	os.chown(voms_config_file(self.user_options['vo']), 0,self.user_options['voms-group-id'])
+        	os.chown(voms_pass_file(self.user_options['vo']), 0,self.user_options['voms-group-id'])
+
         
     
     def write_vomses(self):
