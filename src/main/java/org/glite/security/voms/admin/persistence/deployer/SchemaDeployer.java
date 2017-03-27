@@ -610,33 +610,11 @@ public class SchemaDeployer {
 
 			HibernateFactory.beginTransaction();
 
-			List<String> upgradeScript = loadUpgradeScript();
+			UpgradeDatabaseWork upgradeWork = new UpgradeDatabaseWork(
+				loadUpgradeScript());
 
-			ArrayList<Exception> exceptions = new ArrayList<Exception>();
+			HibernateFactory.getSession().doWork(upgradeWork);
 
-			log.info("Upgrading voms 2.5 database...");
-
-			Statement statement = HibernateFactory.getSession().connection()
-					.createStatement();
-
-			for (String command : upgradeScript) {
-				try {
-
-					log.info(command);
-					statement.executeUpdate(command);
-
-				} catch (SQLException e) {
-					log.error("Error while executing: " + command);
-					exceptions.add(e);
-				}
-
-			}
-
-			if (!exceptions.isEmpty()) {
-				log.error("Error upgrading voms 2.5 database!");
-				printExceptions(exceptions);
-				System.exit(2);
-			}
 
 			dropUnusedTables_2_0_x();
 			fixCaTable();
