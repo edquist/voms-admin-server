@@ -382,13 +382,6 @@ public class SchemaDeployer {
 					e);
 			System.exit(-1);
 
-		} catch (SQLException e) {
-
-			log.error(
-					"SQL error while accessing database metadata from Hibernate connection!",
-					e);
-			System.exit(-1);
-
 		}
 
 		ResultSet tableNames = getTableNamesMatchingPattern(dbMetadata, "%");
