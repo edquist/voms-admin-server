@@ -33,6 +33,8 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.boot.Metadata;
+import org.hibernate.boot.MetadataSources;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.cfg.Configuration;
 
@@ -42,13 +44,34 @@ public class HibernateFactory {
 
 	private static final SessionFactory sessionFactory;
 
+	private static Metadata metadata;
+
 	private static final ThreadLocal threadSession = new ThreadLocal();
 
 	private static final ThreadLocal threadTransaction = new ThreadLocal();
 
 	private static final ThreadLocal threadInterceptor = new ThreadLocal();
 
-	
+	public static synchronized void initialize(MetadataSources metadataSources) {
+		Validate.notNull(metadataSources);
+
+		if (sessionFactory != null) {
+			throw new VOMSDatabaseException(
+				"Hibernate session factory already initialized!");
+		}
+
+		try {
+
+			metadata = metadataSources.buildMetadata();
+			sessionFactory = metadata.getSessionFactoryBuilder().build();
+
+		}catch (Throwable e) {
+			log.error("Hibernate session factory creation failed!", e);
+			throw new ExceptionInInitializerError(e);
+		}
+
+	}
+
 
 	static {
 
@@ -118,6 +141,11 @@ public class HibernateFactory {
 			threadInterceptor.remove();
 		}
 	}
+
+	public static Metadata getMetadata() {
+		return metadata;
+	}
+
 	public static SessionFactory getFactory() {
 
 		return sessionFactory;
