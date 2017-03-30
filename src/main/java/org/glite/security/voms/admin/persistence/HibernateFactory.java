@@ -57,10 +57,13 @@ public class HibernateFactory {
 
 		try {
 
+                        log.info("before config obj ");
 			Configuration hibernateConf = new AnnotationConfiguration();
+                        log.info("before add prop ");
 			hibernateConf.addProperties(conf.getDatabaseProperties());
-
+                        log.info("before configure");
 			sessionFactory = hibernateConf.configure().buildSessionFactory();
+                        log.info("after configure");
 
 		} catch (HibernateException e) {
 
