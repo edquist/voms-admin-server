@@ -33,7 +33,6 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.cfg.Configuration;
 
 public class HibernateFactory {
@@ -57,7 +56,7 @@ public class HibernateFactory {
 
 		try {
 
-			Configuration hibernateConf = new AnnotationConfiguration();
+			Configuration hibernateConf = new Configuration();
 			hibernateConf.addProperties(conf.getDatabaseProperties());
 
 			sessionFactory = hibernateConf.configure().buildSessionFactory();
