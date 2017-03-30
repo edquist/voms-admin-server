@@ -33,7 +33,6 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.cfg.Configuration;
 
 public class HibernateFactory {
@@ -58,7 +57,7 @@ public class HibernateFactory {
 		try {
 
                         log.info("before config obj ");
-			Configuration hibernateConf = new AnnotationConfiguration();
+			Configuration hibernateConf = new Configuration();
                         log.info("before add prop ");
 			hibernateConf.addProperties(conf.getDatabaseProperties());
                         log.info("before configure");
